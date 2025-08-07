@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerenciamento de Colaboradores</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <img id="logo-empresa" src="img/Logo_Empresa.png" alt="Logo da Empresa">
+    <h1>Gerenciamento de Colaboradores</h1>
+    <div class="filtros">
+      <div class="busca">
+        <label for="filtro-busca">Pesquisar por nome:</label>
+        <input type="text" id="filtro-busca" placeholder="Digite o nome do colaborador">
+      </div>
+      <div class="filtro-grupo">
+        <label for="filtro-especialidade">Especialidade:</label>
+        <select id="filtro-especialidade">
+          <option value="">Todos</option>
+        </select>
+      </div>
+      <div class="filtro-grupo">
+        <label for="filtro-contrato">Contrato:</label>
+        <select id="filtro-contrato">
+          <option value="">Todos</option>
+        </select>
+      </div>
+      <button id="limpar-filtros">Limpar Filtros</button>
+    </div>
+    <div id="mensagem-erro" class="mensagem-erro" style="display: none;"></div>
+    <table>
+      <thead>
+        <tr>
+          <th data-coluna="foto">Foto</th>
+          <th data-coluna="colaborador">Colaborador</th>
+          <th data-coluna="matricula">Matrícula</th>
+          <th data-coluna="cpf">CPF</th>
+          <th data-coluna="especialidade">Especialidade</th>
+          <th data-coluna="contato">Contato</th>
+          <th data-coluna="acoes">Ações</th>
+        </tr>
+      </thead>
+      <tbody id="tabela-colaboradores"></tbody>
+    </table>
+  </div>
+
+  <!-- Modal de Edição -->
+  <div id="modal-editar" class="modal" aria-hidden="true">
+    <div class="modal-conteudo">
+      <h2>Editar Colaborador</h2>
+      <img id="modal-foto-colaborador" src="" alt="Foto do colaborador">
+      <form id="form-editar">
+        <input type="hidden" id="editar-id">
+        <div class="form-grupo">
+          <label for="editar-colaborador">Nome</label>
+          <input type="text" id="editar-colaborador" required>
+        </div>
+        <div class="form-grupo">
+          <label for="editar-matricula">Matrícula</label>
+          <input type="text" id="editar-matricula" required>
+        </div>
+        <div class="form-grupo">
+          <label for="editar-cpf">CPF</label>
+          <input type="text" id="editar-cpf" maxlength="14" required>
+        </div>
+        <div class="form-grupo">
+          <label for="editar-especialidade">Especialidade</label>
+          <input type="text" id="editar-especialidade">
+        </div>
+        <div class="form-grupo">
+          <label for="editar-contrato">Contrato</label>
+          <select id="editar-contrato" required>
+            <option value="">Selecione</option>
+          </select>
+        </div>
+        <div class="form-grupo">
+          <label for="editar-contato">Contato</label>
+          <input type="text" id="editar-contato" required>
+        </div>
+        <div class="modal-botoes">
+          <button type="submit">Salvar</button>
+          <button type="button" id="modal-deletar">🗑️</button>
+          <button type="button" id="modal-fechar">Fechar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal de Ajuste de Ponto -->
+  <div id="modal-ajuste-ponto" class="modal" aria-hidden="true">
+    <div class="modal-conteudo">
+      <h2>Ajuste de Ponto</h2>
+      <img id="modal-ajuste-foto-colaborador" src="" alt="Foto do colaborador">
+      <div class="form-grupo">
+        <label for="ajuste-colaborador">Nome</label>
+        <div id="ajuste-colaborador" class="campo-somente-leitura"></div>
+      </div>
+      <div class="form-grupo">
+        <label for="ajuste-matricula">Matrícula</label>
+        <div id="ajuste-matricula" class="campo-somente-leitura"></div>
+      </div>
+      <div class="form-grupo">
+        <label for="ajuste-cpf">CPF</label>
+        <div id="ajuste-cpf" class="campo-somente-leitura"></div>
+      </div>
+      <div class="form-grupo">
+        <label for="ajuste-especialidade">Especialidade</label>
+        <div id="ajuste-especialidade" class="campo-somente-leitura"></div>
+      </div>
+      <div class="form-grupo">
+        <label for="ajuste-contrato">Contrato</label>
+        <div id="ajuste-contrato" class="campo-somente-leitura"></div>
+      </div>
+      <div class="form-grupo">
+        <label for="ajuste-contato">Contato</label>
+        <div id="ajuste-contato" class="campo-somente-leitura"></div>
+      </div>
+      <div class="form-grupo">
+        <label for="ajuste-datas">Datas para Ajuste</label>
+        <input type="date" id="ajuste-datas">
+        <button type="button" id="adicionar-data" class="botao-adicionar-data">Adicionar Data</button>
+        <ul id="datas-lista" class="datas-lista"></ul>
+      </div>
+      <div class="modal-botoes">
+        <button type="button" id="montar-email">Montar Email</button>
+        <button type="button" id="modal-ajuste-fechar">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Visualização de Email -->
+  <div id="modal-email" class="modal" aria-hidden="true">
+    <div class="modal-conteudo">
+      <h2>Email Gerado</h2>
+      <pre id="email-conteudo" class="email-conteudo"></pre>
+      <div class="modal-botoes">
+        <button type="button" id="copiar-email">Copiar</button>
+        <button type="button" id="modal-email-fechar">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/script.js"></script>
+</body>
+</html>
