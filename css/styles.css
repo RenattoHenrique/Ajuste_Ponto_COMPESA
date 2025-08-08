@@ -71,7 +71,7 @@ h1 {
   box-shadow: inset 4px 4px 8px #1e1e1e, inset -4px -4px 8px #3c3c3c;
   outline: none;
   transition: all 0.2s ease;
-  min-width: 300px;
+  min-width: 200px;
 }
 .filtros input[type="text"]:focus,
 .filtros select:focus {
@@ -217,6 +217,13 @@ tr:nth-child(even) {
 tr:hover {
   background-color: #383838;
 }
+/* Contêiner para botões de ação */
+.acoes {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+}
 /* Botão de Editar na Tabela */
 .botao-editar {
   background-color: #303030;
@@ -234,17 +241,6 @@ tr:hover {
   align-items: center;
   justify-content: center;
 }
-#modal-foto-colaborador,
-#modal-ajuste-foto-colaborador {
-  max-width: 100px;
-  max-height: 120px;
-  border-radius: 8px;
-  margin-bottom: 0.5rem;
-  box-shadow: 4px 4px 8px #1e1e1e, -4px -4px 8px #424242;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
 .botao-editar:hover {
   box-shadow: 6px 6px 12px #1e1e1e, -6px -6px 12px #3c3c3c;
   background-color: #383838;
@@ -258,6 +254,57 @@ tr:hover {
 }
 .botao-editar:focus-visible {
   box-shadow: 2px 2px 5px #1e1e1e, -2px -2px 5px #3c3c3c;
+  outline: 2px solid #F1BF02;
+}
+/* Botão de Deletar na Tabela */
+.botao-deletar {
+  background-color: #820A1C;
+  color: #F1BF02;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 8px;
+  box-shadow: 4px 4px 8px #1e1e1e, -4px -4px 8px #3c3c3c;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.botao-deletar:hover {
+  box-shadow: 6px 6px 12px #1e1e1e, -6px -6px 12px #3c3c3c;
+  background-color: #9b0e23;
+  transform: translateY(-2px);
+}
+.botao-deletar:active {
+  box-shadow: inset 4px 4px 8px #1e1e1e, inset -4px -4px 8px #3c3c3c;
+  transform: translateY(1px);
+  background-color: #6b0818;
+}
+.botao-deletar:focus-visible {
+  box-shadow: 2px 2px 5px #1e1e1e, -2px -2px 5px #3c3c3c;
+  outline: 2px solid #F1BF02;
+}
+#modal-foto-colaborador,
+#modal-ajuste-foto-colaborador {
+  max-width: 100px;
+  max-height: 120px;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  box-shadow: 4px 4px 8px #1e1e1e, -4px -4px 8px #424242;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+#modal-foto-colaborador:hover {
+  transform: scale(1.05);
+  box-shadow: 6px 6px 12px #1e1e1e, -6px -6px 12px #3c3c3c;
+}
+#modal-foto-colaborador:focus-visible {
   outline: 2px solid #F1BF02;
 }
 /* Modal */
@@ -436,27 +483,6 @@ tr:hover {
   box-shadow: 2px 2px 5px #1e1e1e, -2px -2px 5px #3c3c3c;
   outline: 2px solid #F1BF02;
 }
-/* Botão Deletar */
-#modal-deletar {
-  background-color: #820A1C;
-  color: #F1BF02;
-  padding: 0.5rem;
-  min-width: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-#modal-deletar:hover {
-  background-color: #9b0e23;
-  color: #F1BF02;
-  box-shadow: 6px 6px 12px #1e1e1e, -6px -6px 12px #3c3c3c;
-  transform: translateY(-2px);
-}
-#modal-deletar:active {
-  box-shadow: inset 4px 4px 8px #1e1e1e, inset -4px -4px 8px #3c3c3c;
-  transform: translateY(1px);
-  background-color: #6b0818;
-}
 /* Estilo para o conteúdo do email */
 .email-conteudo {
   background-color: #2a2a2a;
@@ -546,16 +572,20 @@ tr:hover {
   }
   .filtros button:hover,
   .botao-editar:hover,
+  .botao-deletar:hover,
   .modal-botoes button:hover,
   .botao-adicionar-data:hover,
-  .botao-remover-data:hover {
+  .botao-remover-data:hover,
+  #modal-foto-colaborador:hover {
     transform: translateY(-1px);
   }
   .filtros button:active,
   .botao-editar:active,
+  .botao-deletar:active,
   .modal-botoes button:active,
   .botao-adicionar-data:active,
-  .botao-remover-data:active {
+  .botao-remover-data:active,
+  #modal-foto-colaborador:active {
     transform: translateY(0.5px);
   }
   .modal-conteudo {
@@ -616,131 +646,18 @@ tr:hover {
     border-radius: 6px;
     min-width: 70px;
   }
-  #modal-deletar {
-    padding: 0.4rem;
-    min-width: 36px;
-  }
   .email-conteudo {
     padding: 0.4rem;
     font-size: 0.85rem;
     border-radius: 6px;
-    margin-bottom: 0.4rem;
-    max-height: 50vh;
   }
-}
-@media (max-width: 480px) {
-  h1 {
-    font-size: 1.5rem;
+  .acoes {
+    gap: 0.4rem;
   }
-  #logo-empresa {
-    max-width: 100px;
-    margin-bottom: 0.75rem;
-  }
-  th, td {
-    padding: 0.5rem;
-    font-size: 0.8rem;
-    min-width: 60px;
-  }
-  td img {
-    width: 32px;
-    height: 32px;
-  }
-  .filtros input[type="text"],
-  .filtros select,
-  .filtros button {
-    min-width: 200px;
-  }
-  th::after {
-    font-size: 0.6rem;
-    margin-left: 0.15rem;
-  }
-  .filtros button:hover,
-  .botao-editar:hover,
-  .modal-botoes button:hover,
-  .botao-adicionar-data:hover,
-  .botao-remover-data:hover {
-    transform: translateY(-1px);
-  }
-  .filtros button:active,
-  .botao-editar:active,
-  .modal-botoes button:active,
-  .botao-adicionar-data:active,
-  .botao-remover-data:active {
-    transform: translateY(0.5px);
-  }
-  .modal-conteudo {
-    padding: 0.5rem;
-    width: 95%;
-    max-width: 320px;
-    max-height: 80vh;
-  }
-  .modal-conteudo h2 {
-    font-size: 1.1rem;
-    margin-bottom: 0.3rem;
-  }
-  #modal-foto-colaborador,
-  #modal-ajuste-foto-colaborador {
-    margin-bottom: 0.3rem;
-  }
-  .form-grupo {
-    margin-bottom: 0.3rem;
-  }
-  .form-grupo label {
-    margin-bottom: 0.1rem;
-    font-size: 0.8rem;
-  }
-  .form-grupo input,
-  .form-grupo select,
-  .form-grupo .campo-somente-leitura,
-  .form-grupo .datas-lista li {
-    padding: 0.3rem;
-    font-size: 0.8rem;
-    border-radius: 5px;
-  }
-  .form-grupo .botao-adicionar-data {
-    padding: 0.3rem 0.6rem;
-    font-size: 0.8rem;
-    border-radius: 5px;
-    margin-top: 0.15rem;
-  }
-  .form-grupo .botao-remover-data {
-    padding: 0.15rem;
-    font-size: 0.8rem;
-    border-radius: 5px;
-    width: 18px;
-    height: 18px;
-  }
-  .form-grupo .datas-lista {
-    margin-top: 0.15rem;
-  }
-  .form-grupo .datas-lista li {
-    margin-bottom: 0.15rem;
-  }
-  .modal-botoes {
-    gap: 0.3rem;
-    margin-top: 0.3rem;
-  }
-  .modal-botoes button {
-    padding: 0.3rem 0.6rem;
-    font-size: 0.8rem;
-    border-radius: 5px;
-    min-width: 60px;
-  }
-  #modal-deletar {
-    padding: 0.3rem;
-    min-width: 32px;
-  }
-  .botao-editar {
-    padding: 0.4rem;
-    font-size: 0.9rem;
+  .botao-editar,
+  .botao-deletar {
     width: 28px;
     height: 28px;
-  }
-  .email-conteudo {
-    padding: 0.3rem;
-    font-size: 0.8rem;
-    border-radius: 5px;
-    margin-bottom: 0.3rem;
-    max-height: 40vh;
+    font-size: 0.9rem;
   }
 }
