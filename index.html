@@ -27,13 +27,26 @@
           <option value="">Todos</option>
         </select>
       </div>
+      <div class="filtro-grupo">
+        <label for="filtro-unidade">Unidade:</label>
+        <select id="filtro-unidade">
+          <option value="">Todos</option>
+        </select>
+      </div>
+      <div class="filtro-grupo">
+        <label for="filtro-coordenacao">Coordenação:</label>
+        <select id="filtro-coordenacao">
+          <option value="">Todos</option>
+        </select>
+      </div>
+      <button id="adicionar-colaborador" aria-label="Adicionar novo colaborador">Adicionar Colaborador</button>
       <button id="limpar-filtros">Limpar Filtros</button>
     </div>
     <div id="mensagem-erro" class="mensagem-erro" style="display: none;"></div>
     <table>
       <thead>
         <tr>
-          <th data-coluna="foto">Foto</th>
+          <th>Foto</th>
           <th data-coluna="colaborador">Colaborador</th>
           <th data-coluna="matricula">Matrícula</th>
           <th data-coluna="cpf">CPF</th>
@@ -46,11 +59,12 @@
     </table>
   </div>
 
-  <!-- Modal de Edição -->
+  <!-- Modal de Edição/Adição -->
   <div id="modal-editar" class="modal" aria-hidden="true">
     <div class="modal-conteudo">
-      <h2>Editar Colaborador</h2>
-      <img id="modal-foto-colaborador" src="" alt="Foto do colaborador">
+      <h2 id="modal-titulo">Editar Colaborador</h2>
+      <img id="modal-foto-colaborador" src="" alt="Foto do colaborador" style="cursor: pointer;" aria-label="Clique para fazer upload da foto">
+      <input type="file" id="upload-foto" accept="image/png,image/jpeg" style="display: none;">
       <form id="form-editar">
         <input type="hidden" id="editar-id">
         <div class="form-grupo">
@@ -67,11 +81,23 @@
         </div>
         <div class="form-grupo">
           <label for="editar-especialidade">Especialidade</label>
-          <input type="text" id="editar-especialidade">
+          <input type="text" id="editar-especialidade" required>
         </div>
         <div class="form-grupo">
           <label for="editar-contrato">Contrato</label>
           <select id="editar-contrato" required>
+            <option value="">Selecione</option>
+          </select>
+        </div>
+        <div class="form-grupo">
+          <label for="editar-unidade">Unidade</label>
+          <select id="editar-unidade" required>
+            <option value="">Selecione</option>
+          </select>
+        </div>
+        <div class="form-grupo">
+          <label for="editar-coordenacao">Coordenação</label>
+          <select id="editar-coordenacao" required>
             <option value="">Selecione</option>
           </select>
         </div>
@@ -81,7 +107,6 @@
         </div>
         <div class="modal-botoes">
           <button type="submit">Salvar</button>
-          <button type="button" id="modal-deletar">🗑️</button>
           <button type="button" id="modal-fechar">Fechar</button>
         </div>
       </form>
@@ -114,6 +139,14 @@
         <div id="ajuste-contrato" class="campo-somente-leitura"></div>
       </div>
       <div class="form-grupo">
+        <label for="ajuste-unidade">Unidade</label>
+        <div id="ajuste-unidade" class="campo-somente-leitura"></div>
+      </div>
+      <div class="form-grupo">
+        <label for="ajuste-coordenacao">Coordenação</label>
+        <div id="ajuste-coordenacao" class="campo-somente-leitura"></div>
+      </div>
+      <div class="form-grupo">
         <label for="ajuste-contato">Contato</label>
         <div id="ajuste-contato" class="campo-somente-leitura"></div>
       </div>
@@ -144,5 +177,4 @@
 
   <script type="module" src="js/script.js"></script>
 </body>
-
 </html>
